@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="add">
+
+</div>
+<script>
+    var xhr= null;
+    if (window.XMLHttpRequest){
+        xhr = new XMLHttpRequest();
+    }else {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP")
+    }
+    xhr.open("get","getPics.php?cpage=1",true);
+    xhr.send();
+    xhr.onreadystatechange=function () {
+        if(xhr.readyState==4){			//readyState 请求码
+            console.log(xhr.readyState+'e');
+            if(xhr.status==200){		//status状态码  叛变
+                console.log(xhr.readyState+'f');
+                var data=xhr.response;	//response
+                console.log(data);
+                show(data)
+            }
+        }else{
+            console.log("失败")
+        }
+    }
+    function show(data){
+        document.getElementById("add").innerHTML=data
+    }
+</script>
+</body>
+</html>
